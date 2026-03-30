@@ -1,0 +1,434 @@
+1368:      const weaknesses = failureResult.reasons.map(r => r.reason);
+1369-      const learningResult = await aiService.recommendLearningPath({ weaknesses });
+--
+1386:    setStudents(prev => prev.map(s => {
+1387-      if (s.id === studentId) {
+--
+1433:        .map(([key, _]) => key);
+1434-      
+--
+1468:    setStudents(prev => prev.map(s => {
+1469-      if (s.id === studentId) {
+--
+1505:    setMatches(prev => prev.map(m => {
+1506-      if (m.id === feedbackMatchId) {
+--
+1526:    setStudents(prev => prev.map(s => {
+1527-      if (s.id === assignStudentId) {
+--
+1585:      const updated = prev.map(m => {
+1586-        if (m.id === matchId) {
+--
+1600:      setStudents(prev => prev.map(s => {
+1601-        if (s.id === match.studentId) {
+--
+1641:      .map(student => ({
+1642-        ...student,
+--
+1706:    setStudents(prev => prev.map(s => 
+1707-      s.id === studentId 
+--
+1724:    setJobs(prev => prev.map(j => 
+1725-      j.id === jobId ? { ...j, score: newScore } : j
+--
+1733:    setEnterprises(prev => prev.map(e => 
+1734-      e.id === entId ? { ...e, score: newScore } : e
+--
+1900:          {menuItems.map((item: any, idx) => (
+1901-            item.type === 'header' ? (
+--
+1955:              {terminals.map((t) => (
+1956-                <button
+--
+2134:                        ].map((risk, idx) => (
+2135-                          <div key={idx} className="p-4 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer group">
+--
+2172:                        ].map((job, idx) => (
+2173-                          <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+--
+2251:                        .map(job => (
+2252-                          <tr key={job.id} className="hover:bg-gray-50 transition-colors">
+--
+2262:                                {job.skillPoints ? job.skillPoints.map((sp: any) => (
+2263-                                  <div key={sp.id} className="flex items-center gap-2">
+--
+2277:                                {job.skillPoints?.map((sp: any) => (
+2278-                                  <div key={sp.id} className="flex items-center gap-1 text-[10px] text-[#646D76]">
+--
+2341:                      .map(match => {
+2342-                        const student = students.find(s => s.id === match.studentId);
+--
+2362:                                  {student?.skillTags?.map(tag => (
+2363-                                    <span key={tag} className="px-2 py-0.5 bg-gray-100 text-[#1A1C1E] rounded text-[10px] font-medium">{tag}</span>
+--
+2438:                      ].map((stat) => (
+2439-                        <div key={stat.label} className="bg-white p-4 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+2544:                                  {['5G NR', '无线网优'].map(s => (
+2545-                                    <span key={s} className="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-1 rounded-lg font-bold">{s}</span>
+--
+2552:                                  {['Redis缓存', 'Docker部署'].map(s => (
+2553-                                    <span key={s} className="text-[10px] bg-red-50 text-red-600 px-2 py-1 rounded-lg font-bold">{s}</span>
+--
+2568:                                  {internsData.find(i => i.id === 'INT-2024001')?.skillPointResults?.map((res: any, idx: number) => (
+2569-                                    <div key={idx} className="flex items-center justify-between p-2 bg-gray-50 rounded-xl">
+--
+2604:                              ].map((item, idx) => (
+2605-                                <div key={idx} className="relative pl-12">
+--
+2678:                            .map(intern => (
+2679-                            <tr key={intern.id} className="hover:bg-gray-50 transition-colors">
+--
+2723:                                  {intern.riskTags && intern.riskTags.length > 0 ? intern.riskTags.map((tag: string) => (
+2724-                                    <span key={tag} className="text-[10px] bg-red-50 text-red-600 px-1.5 py-0.5 rounded font-bold border border-red-100">
+--
+2781:                        {internsData.slice(0, 5).map(intern => (
+2782-                          <tr key={intern.id} className="hover:bg-gray-50 transition-colors">
+--
+2805:                                  {intern.skillPointResults?.slice(0, 4).map((res: any, idx: number) => (
+2806-                                    <div 
+--
+2889:                    ].map((config, idx) => (
+2890-                      <div key={idx} className="bg-white p-6 rounded-3xl border border-[#E1E3E6] shadow-sm hover:shadow-md transition-all group">
+--
+2901:                          {config.skills.map(s => (
+2902-                            <span key={s} className="text-[10px] bg-gray-50 text-[#646D76] px-2 py-1 rounded-lg font-medium">{s}</span>
+--
+2951:                        {enterpriseRanking.map(ent => (
+2952-                          <tr key={ent.name} className="hover:bg-gray-50 transition-colors">
+--
+2958:                                {['5G', 'Python'].map(s => (
+2959-                                  <span key={s} className="text-[10px] bg-gray-100 text-[#646D76] px-1.5 py-0.5 rounded">{s}</span>
+--
+2998:                        {jobsData.slice(0, 5).map(job => (
+2999-                          <tr key={job.id} className="hover:bg-gray-50 transition-colors">
+--
+3004:                                {['Ceph', 'Linux'].map(s => (
+3005-                                  <span key={s} className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">{s}</span>
+--
+3036:                        {jobsData.slice(0, 5).map(job => (
+3037-                          <tr key={job.id} className="hover:bg-gray-50 transition-colors">
+--
+3110:                        {jobExpansionPersonnelData.map((person, idx) => (
+3111-                          <tr key={idx} className="hover:bg-gray-50 transition-colors">
+--
+3207:                            {collegesAnalysisData[selectedSchoolId]?.map(college => (
+3208-                              <tr key={college.id} className="hover:bg-gray-50 transition-colors">
+--
+3240:                            {majorsAnalysisData['COL001']?.map((major, idx) => (
+3241-                              <tr key={idx} className="hover:bg-gray-50 transition-colors">
+--
+3338:                              .map(school => (
+3339-                                <tr key={school.id} className="hover:bg-gray-50 transition-colors">
+--
+3390:                        {expansionPersonnelData.map((person, idx) => (
+3391-                          <tr key={idx} className="hover:bg-gray-50 transition-colors">
+--
+3445:                        {students.slice(0, 5).map(stu => (
+3446-                          <tr key={stu.id} className="hover:bg-gray-50 transition-colors">
+--
+3453:                                {['5G', 'NR'].map(tag => (
+3454-                                  <span key={tag} className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">{tag}</span>
+--
+3502:                    {jobs.slice(0, 4).map(job => (
+3503-                      <div key={job.id} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm hover:shadow-md transition-shadow">
+--
+3513:                            {job.skillPoints?.map(sp => (
+3514-                              <span key={sp.id} className="text-[10px] bg-gray-100 text-[#646D76] px-2 py-1 rounded-lg">{sp.name}</span>
+--
+3560:                        {assessmentsData.map(report => (
+3561-                          <tr key={report.id} className="hover:bg-gray-50 transition-colors">
+--
+3746:                              {matches.filter(m => m.studentId === 'STU001' && (m.matchStatus.startsWith('已失败') || m.matchStatus.startsWith('已放弃'))).map((m, idx) => (
+3747-                                <div key={idx} className="p-4 bg-red-50/50 rounded-xl border border-red-100">
+--
+3766:                                        {aiFailureAnalysis[m.id]?.reasons?.map((r, i) => (
+3767-                                          <div key={i} className="flex items-start gap-2">
+--
+3809:                                {aiLearningPath?.improvementSuggestions?.length ? aiLearningPath.improvementSuggestions.map((s, i) => (
+3810-                                  <li key={i}>{s}</li>
+--
+3823:                                {(aiLearningPath ? aiLearningPath.recommendedCourses : (matches.find(m => m.studentId === 'STU001')?.recommendedCourses || [])).map((course: string) => (
+3824-                                  <div key={course} className="flex items-center justify-between">
+--
+3843:                            {students.find(s => s.id === 'STU001')?.penaltyHistory.map((penalty: any, idx: number) => (
+3844-                              <div key={idx} className="flex items-center justify-between p-4 bg-red-50/30 rounded-xl border border-red-100">
+--
+3871:                            {students.find(s => s.id === 'STU001')?.recommendationLogs.map((log: any, idx: number) => (
+3872-                              <div key={idx} className="flex items-center justify-between p-4 bg-amber-50/30 rounded-xl border border-amber-100">
+--
+3907:                    {jobsData.slice(0, 4).map(job => (
+3908-                      <div key={job.id} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm hover:shadow-md transition-shadow">
+--
+3920:                              {['5G NR', '无线网优', '路测分析'].map(s => (
+3921-                                <span key={s} className="text-xs bg-gray-100 text-[#646D76] px-2 py-1 rounded-lg">{s}</span>
+--
+3954:                          {[1, 2, 3].map(i => (
+3955-                            <div key={i} className="flex items-center justify-between p-4 border-b border-gray-50 last:border-0">
+--
+3978:                          {internsData.find(it => it.studentId === 'STU001')?.internshipTasks?.map(task => (
+3979-                            <div key={task.id} className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+--
+4058:                    {coursesData.slice(0, 3).map(course => (
+4059-                      <div key={course.id} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm overflow-hidden flex flex-col">
+--
+4065:                          {course.skillTags.map(tag => (
+4066-                            <span key={tag} className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">{tag}</span>
+--
+4089:                    {certificationsData.filter(c => c.status === '已发放').map(cert => (
+4090-                      <div key={cert.id} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm relative overflow-hidden group">
+--
+4125:                        {jobsData.map(job => (
+4126-                          <option key={job.id} value={job.id}>{job.title} ({job.company})</option>
+--
+4141:                            {Array.from(new Set(selectedJobForAssessment.skillPoints.map(sp => sp.module))).map(module => (
+4142-                              <div key={module} className="space-y-4">
+--
+4148:                                  {selectedJobForAssessment.skillPoints.filter(sp => sp.module === module).map(sp => (
+4149-                                    <div key={sp.name} className="p-4 bg-gray-50 rounded-2xl border border-gray-100 group hover:border-blue-200 transition-all">
+--
+4197:                            ].map((history, idx) => (
+4198-                              <div key={idx} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+--
+4414:                        {students.slice(0, 10).map(stu => {
+4415-                          const studentMatches = matches.filter(m => m.studentId === stu.id);
+--
+4427:                                    {[1, 2, 3].map(i => (
+4428-                                      <div key={i} className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-[8px] font-bold text-gray-400">
+--
+4499:                        {students.slice(0, 10).map(stu => {
+4500-                          const score = stu.score || Math.floor(Math.random() * 40) + 60; // Mock score if not present
+--
+4718:                {[1, 2, 3].map((i) => (
+4719-                  <div key={i} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm animate-pulse">
+--
+4754:                {stats.map((stat) => (
+4755-                  <div key={stat.label} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm hover:shadow-md transition-shadow">
+--
+4799:                    {riskWarnings.map((warning) => (
+4800-                      <button 
+--
+4822:                    ].map((action) => (
+4823-                      <button key={action.label} className={cn("w-full flex items-center justify-between p-3 rounded-xl transition-colors border border-gray-100", action.bg)}>
+--
+4866:                    {['全部', 'A', 'B', 'C', 'D'].map(g => (
+4867-                      <button
+--
+4889:                ].map((stat) => (
+4890-                  <div key={stat.label} className="bg-white p-4 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+4929:                        .map((ent) => (
+4930-                        <tr key={ent.id} className="hover:bg-gray-50 transition-colors">
+--
+5051:                          {selectedEnterprise.skillMappings?.map((mapping: any) => (
+5052-                            <div key={mapping.skill} className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+--
+5060:                                  {mapping.courses.map((course: string) => (
+5061-                                    <span key={course} className="text-[10px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">{course}</span>
+--
+5107:                                .map(job => (
+5108-                                  <tr key={job.id} className="hover:bg-gray-50 transition-colors">
+--
+5164:                    {['全部', 'A', 'B', 'C', 'D'].map(g => (
+5165-                      <button
+--
+5187:                ].map((stat) => (
+5188-                  <div key={stat.label} className="bg-white p-4 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+5221:                        .map((job) => (
+5222-                        <tr key={job.id} className="hover:bg-gray-50 transition-colors">
+--
+5389:                                .map(match => (
+5390-                                  <tr key={match.id} className="hover:bg-gray-50 transition-colors">
+--
+5455:                    {['全部', 'A', 'B', 'C', 'D'].map(g => (
+5456-                      <button
+--
+5478:                ].map((stat) => (
+5479-                  <div key={stat.label} className="bg-white p-4 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+5509:                        .map((stu) => (
+5510-                        <tr key={stu.id} className="hover:bg-gray-50 transition-colors">
+--
+5649:                            {selectedStudent.penaltyHistory.map((penalty: any, idx: number) => (
+5650-                              <div key={idx} className="flex items-center justify-between p-4 bg-red-50/30 rounded-xl border border-red-100">
+--
+5702:                          ].map((item) => (
+5703-                            <div key={item.label} className="bg-white p-4 rounded-2xl border border-blue-50 shadow-sm">
+--
+5739:                                {selectedStudent.improvementHistory.map((item: any, idx: number) => (
+5740-                                  <div key={item.id} className="relative pl-8">
+--
+5785:                                ].map(course => (
+5786-                                  <div key={course.id} className="bg-white p-4 rounded-2xl border border-emerald-50 shadow-sm flex justify-between items-center group hover:border-emerald-200 transition-all">
+--
+5871:                                .map(match => (
+5872-                                  <tr key={match.id} className="hover:bg-gray-50 transition-colors">
+--
+5926:                                    setStudents(prev => prev.map(s => s.id === selectedStudent.id ? { ...s, recommendationLimit: limit } : s));
+5927-                                    setSelectedStudent(prev => ({ ...prev, recommendationLimit: limit }));
+--
+5942:                              {selectedStudent.recommendationLogs.map((log: any, idx: number) => (
+5943-                                <div key={idx} className="bg-white p-4 rounded-2xl border border-amber-50 shadow-sm flex justify-between items-center">
+--
+5994:                            .map(s => ({
+5995-                              ...s,
+--
+6072:                          {students.filter(s => !isStudentBound(s.id)).sort((a, b) => b.score - a.score).map(s => {
+6073-                            const job = jobs.find(j => j.id === manualMatchJobId);
+--
+6091:                          {jobs.filter(j => j.status !== '已满').sort((a, b) => b.score - a.score).map(j => (
+6092-                            <option key={j.id} value={j.id}>{j.title} ({j.company}) - 评分: {j.score} - 门槛: {j.minStudentScore || 0}</option>
+--
+6137:                      {jobs.filter(j => j.status !== '已满').map(j => (
+6138-                        <option key={j.id} value={j.id}>{j.title} ({j.company})</option>
+--
+6144:                  {generateCandidatePool(selectedPoolJobId).map(s => (
+6145-                    <div key={s.id} className="p-4 rounded-xl border border-blue-100 bg-blue-50/30 flex flex-col items-center text-center space-y-2">
+--
+6184:                ].map((stat, i) => (
+6185-                  <div key={i} className={cn("p-4 rounded-2xl border border-[#E1E3E6] shadow-sm", stat.bg)}>
+--
+6274:                        .map((match) => {
+6275-                          const student = students.find(s => s.id === match.studentId);
+--
+6338:                                    {internsData.find(s => s.id === match.studentId)?.skillPointResults?.map((sp: any, idx: number) => (
+6339-                                      <div key={idx} className="flex items-center justify-between">
+--
+6607:                        .map((match) => (
+6608-                          <tr key={match.id} className="hover:bg-gray-50 transition-colors">
+--
+6786:                                      {[1, 2, 3, 4, 5].map(star => (
+6787-                                        <div key={star} className={cn(
+--
+6870:                                          {aiFailureAnalysis[selectedMatch.id]?.reasons?.map((reason, idx) => (
+6871-                                            <div key={idx} className="bg-white p-3 rounded-xl border border-emerald-50 shadow-sm">
+--
+6891:                                              {aiFailureAnalysis[selectedMatch.id]?.recommendations?.recommendedCourses?.map(course => (
+6892-                                                <div key={course.id} className="bg-white p-3 rounded-xl border border-blue-50 shadow-sm flex justify-between items-center group">
+--
+6909:                                                {aiFailureAnalysis[selectedMatch.id]?.recommendations?.improvementSuggestions?.map((suggestion, idx) => (
+6910-                                                  <div key={idx} className="flex items-start gap-1.5">
+--
+6983:                {['课程库', '能力测评', '学习任务', '认证管理', '数据看板'].map((tab) => (
+6984-                  <button
+--
+7037:                      .map(course => (
+7038-                      <div key={course.id} className="bg-white rounded-2xl border border-[#E1E3E6] shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+--
+7045:                            {course.skillTags.map(tag => (
+7046-                              <span key={tag} className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">{tag}</span>
+--
+7085:                        {assessmentsData.map(assessment => (
+7086-                          <tr key={assessment.id} className="hover:bg-gray-50 transition-colors">
+--
+7109:                                {assessment.strengths.map(s => (
+7110-                                  <span key={s} className="text-[10px] bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded">{s}</span>
+--
+7116:                                {assessment.weaknesses.map(w => (
+7117-                                  <span key={w} className="text-[10px] bg-amber-50 text-amber-600 px-1.5 py-0.5 rounded">{w}</span>
+--
+7148:                        {learningTasksData.map(task => (
+7149-                          <tr key={task.id} className="hover:bg-gray-50 transition-colors">
+--
+7192:                        {certificationsData.map(cert => (
+7193-                          <tr key={cert.id} className="hover:bg-gray-50 transition-colors">
+--
+7260:                        {trainingDashboardData.skillDistribution.map(item => (
+7261-                          <div key={item.name} className="space-y-1">
+--
+7297:                {['运营日志', '平台健康度', '问题闭环管理', '复盘报表'].map((tab) => (
+7298-                  <button
+--
+7320:                    ].map((stat) => (
+7321-                      <div key={stat.label} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+7362:                          {operationsData.map((op, i) => (
+7363-                            <tr key={i} className="hover:bg-gray-50 transition-colors">
+--
+7397:                    ].map((m) => (
+7398-                      <div key={m.label} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+7491:                        {problemManagementData.map((p) => (
+7492-                          <tr key={p.id} className="hover:bg-gray-50 transition-colors">
+--
+7545:                        {['2024年3月第一周运营复盘', '2024年2月月度运营总结', '2024年2月第四周运营复盘'].map((report) => (
+7546-                          <div key={report} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl group hover:bg-blue-50 transition-colors cursor-pointer">
+--
+7601:                {['实习生列表', '工作记录统计', '提交率统计'].map((tab) => (
+7602-                  <button
+--
+7672:                            .map((intern) => (
+7673-                            <tr key={intern.id} className="hover:bg-gray-50 transition-colors group">
+--
+7785:                          {workStatsData.map((stat, i) => (
+7786-                            <tr key={i} className="hover:bg-gray-50 transition-colors">
+--
+7836:                    ].map((stat) => (
+7837-                      <div key={stat.label} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+7847:                  {['按班级统计', '按产业学院统计', '按企业统计'].map((title) => (
+7848-                    <div key={title} className="bg-white p-6 rounded-2xl border border-[#E1E3E6] shadow-sm">
+--
+7855:                        ].map((item) => (
+7856-                          <div key={item.name} className="space-y-1.5">
+--
+8022:                          {['优秀', '良好', '一般', '不合格'].map(level => (
+8023-                            <button 
+--
+8036:                          {['5G NR 协议', '无线网络优化', 'Ceph 架构原理', 'BGP 路由协议', '深度学习框架', '模型部署优化'].map(skill => (
+8037-                            <label key={skill} className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors">
+--
+8123:                              {selectedInternForReport.skillPointResults?.filter((item: any) => item.category === 'training').map((item: any, idx: number) => (
+8124-                                <div key={idx} className="p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 transition-colors">
+--
+8158:                              {selectedInternForReport.internshipTasks?.map((task: any) => (
+8159-                                <div key={task.id} className="p-4 bg-amber-50/30 rounded-2xl border border-amber-100/50">
+--
+8220:                                selectedInternForReport.skillPointResults?.filter((s: any) => s.score < 70).map((s: any) => (
+8221-                                  <div key={s.id} className="p-3 bg-amber-50 border border-amber-100 rounded-xl flex justify-between items-center">
+--
+8309:                          {['完成 3 个实战项目', '通过技能认证考试', '日报/周报评分 > 4.0', '导师评价优秀'].map(std => (
+8310-                            <label key={std} className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors">
+--
+8322:                            {coursesData.slice(0, 5).map(c => <option key={c.id}>{c.title}</option>)}
+8323-                          </select>
+--
+8381:                          ].map((item, idx) => (
+8382-                            <div key={idx} className="relative">
+--
+8519:                          {['5G', 'NR', 'Ceph', 'BGP', 'OSPF', 'PyTorch', 'TensorFlow', 'Linux'].map(skill => (
+8520-                            <label key={skill} className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors group">
+--
+8531:                          {['HCIA-5G 认证', 'HCIP-Storage 认证', 'HCIE-Datacom 认证', 'AI 应用开发高级认证'].map(cert => (
+8532-                            <label key={cert} className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors group">
+--
+8543:                          {coursesData.slice(0, 4).map(course => (
+8544-                            <label key={course.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors group">
+--
+8607:                      {['5G 协议', '无线网优', '存储架构', '网络路由'].map((skill, idx) => (
+8608-                        <div key={idx} className="p-6 bg-gray-50 rounded-2xl border border-gray-100 space-y-4">
+--
+8676:                          ].map((student, idx) => (
+8677-                            <tr key={idx} className="hover:bg-gray-50 transition-colors">
+--
+8733:                          {coursesData.map(course => (
+8734-                            <option key={course.id}>{course.title}</option>
+--
+8794:                          {['5G', 'Python', 'Go', 'Ceph', 'BGP', 'Cloud Native', 'Big Data'].map(skill => (
+8795-                            <label key={skill} className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+--
+8843:                          {['5G', 'Ceph', 'BGP', 'PyTorch', '算法'].map(tag => (
+8844-                            <label key={tag} className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+--
+8892:                          {students.slice(0, 5).map(s => (
+8893-                            <option key={s.id}>{s.name} ({s.id})</option>
+--
+8900:                          {['基础理论', '编程实操', '逻辑思维', '沟通表达'].map(dim => (
+8901-                            <label key={dim} className="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors">
+--
+8945:                          {students.slice(0, 10).map(stu => (
+8946-                            <tr key={stu.id} className="hover:bg-gray-50 transition-colors">
+--
+8989:                          {['通过', '淘汰'].map(res => (
+8990-                            <button
