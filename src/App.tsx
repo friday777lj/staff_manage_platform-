@@ -458,9 +458,9 @@ const internsData = [
     }
   },
   { 
-    id: 'INT_HUAWEI_2', 
+    id: 'INT_HUAWEI_4', 
     jobId: 'JOB001', 
-    studentId: 'STU007', 
+    studentId: 'STU011', 
     name: '王芳', 
     company: '华为', 
     position: '通信前台工程师', 
@@ -505,7 +505,7 @@ const internsData = [
   { 
     id: 'INT_JH_1', 
     jobId: 'JOB_JH_001', 
-    studentId: 'STU008', 
+    studentId: 'STU012', 
     name: '周杰', 
     company: '嘉环科技', 
     position: '数据库工程师', 
@@ -1260,7 +1260,7 @@ const matchesData = [
   },
   { 
     id: 'MAT006', 
-    studentId: 'STU001', 
+    studentId: 'STU013', 
     studentName: '张三', 
     jobId: 'JOB001', 
     jobTitle: '云计算开发工程师', 
@@ -1350,7 +1350,7 @@ const matchesData = [
     studentBehavior: { noShow: false, rejected: false, reason: '-' }
   },
   { 
-    id: 'MAT006', 
+    id: 'MAT008', 
     studentId: 'STU001', 
     studentName: '陈小明', 
     jobId: 'JOB003', 
@@ -2108,7 +2108,7 @@ export default function App() {
             <div className="hidden lg:flex items-center gap-1 bg-gray-100 p-1 rounded-xl ml-4">
               {terminals.map((t) => (
                 <button
-                  key={t}
+                  key={`terminal-${t}`}
                   onClick={() => {
                     setActiveTerminal(t);
                     if (t === '管理端') setActiveTab('Dashboard');
@@ -2971,9 +2971,9 @@ export default function App() {
                                   <span className="text-[10px] text-[#646D76]">技能点</span>
                                 </div>
                                 <div className="flex -space-x-1">
-                                  {intern.skillPointResults?.slice(0, 4).map((res: any, idx: number) => (
+                                  {intern.skillPointResults?.slice(0, 4).map((res: any) => (
                                     <div 
-                                      key={idx} 
+                                      key={res.id} 
                                       title={`${res.name}: ${res.status}`}
                                       className={cn(
                                         "w-3 h-3 rounded-full border border-white",
@@ -3118,7 +3118,7 @@ export default function App() {
                       </thead>
                       <tbody className="divide-y divide-[#E1E3E6]">
                         {enterpriseRanking.map(ent => (
-                          <tr key={ent.name} className="hover:bg-gray-50 transition-colors">
+                          <tr key={`ent-${ent.name}`} className="hover:bg-gray-50 transition-colors">
                             <td className="px-6 py-4 text-sm font-semibold">{ent.name}</td>
                             <td className="px-6 py-4 text-sm font-bold text-orange-600">{Math.floor(ent.demand * 0.6)}</td>
                             <td className="px-6 py-4 text-sm font-bold text-blue-600">{Math.floor(ent.demand * 0.4)}</td>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人才服务运营平台 - 产教融合智慧展示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body x-data="{ role: 'student', activeTab: 'dashboard' }">
+
+    <!-- 侧边栏 -->
+    <aside class="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 hidden lg:flex flex-col">
+        <div class="p-6 flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+                <i data-lucide="zap" class="text-white w-6 h-6"></i>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight">人才服务运营平台</span>
+        </div>
+
+        <nav class="flex-1 px-4 space-y-2 mt-4">
+            <!-- 角色切换 -->
+            <div class="mb-8">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-2">当前视角</p>
+                <select x-model="role" class="w-full bg-slate-50 border-none rounded-xl px-3 py-2 text-sm font-semibold focus:ring-2 focus:ring-blue-500">
+                    <option value="student">学生端 (Student)</option>
+                    <option value="enterprise">企业端 (Enterprise)</option>
+                    <option value="school">院校端 (School)</option>
+                </select>
+            </div>
+
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-2">主菜单</p>
+            <template x-if="role === 'student'">
+                <div class="space-y-1">
+                    <button @click="activeTab = 'dashboard'" :class="activeTab === 'dashboard' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> 个人看板
+                    </button>
+                    <button @click="activeTab = 'jobs'" :class="activeTab === 'jobs' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all">
+                        <i data-lucide="briefcase" class="w-4 h-4"></i> 岗位匹配
+                    </button>
+                    <button @click="activeTab = 'skills'" :class="activeTab === 'skills' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all">
+                        <i data-lucide="graduation-cap" class="w-4 h-4"></i> 技能诊断
+                    </button>
+                </div>
+            </template>
+
+            <template x-if="role === 'enterprise'">
+                <div class="space-y-1">
+                    <button @click="activeTab = 'dashboard'" :class="activeTab === 'dashboard' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i> 数据概览
+                    </button>
+                    <button @click="activeTab = 'interns'" :class="activeTab === 'interns' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all">
+                        <i data-lucide="users" class="w-4 h-4"></i> 实习生管理
+                    </button>
+                </div>
+            </template>
+
+            <template x-if="role === 'school'">
+                <div class="space-y-1">
+                    <button @click="activeTab = 'dashboard'" :class="activeTab === 'dashboard' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all">
+                        <i data-lucide="pie-chart" class="w-4 h-4"></i> 就业大屏
+                    </button>
+                </div>
+            </template>
+        </nav>
+
+        <div class="p-4 mt-auto">
+            <div class="bg-slate-900 rounded-2xl p-4 text-white">
+                <p class="text-xs font-bold opacity-60">AI 引擎状态</p>
+                <div class="flex items-center gap-2 mt-2">
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <span class="text-[10px] font-bold">运行中 (Gemini 1.5 Pro)</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="lg:ml-64 min-h-screen p-4 lg:p-8">
+        
+        <!-- 顶部通栏 -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-extrabold text-slate-900" x-text="role === 'student' ? '学生端看板' : (role === 'enterprise' ? '企业管理后台' : '院校指挥中心')"></h1>
+                <p class="text-slate-500 text-sm mt-1">欢迎回来，系统已为您准备好今日简报</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:bg-slate-50 relative">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+                <div class="flex items-center gap-3 bg-white p-1 pr-4 border border-slate-200 rounded-full">
+                    <img src="https://picsum.photos/seed/user/100/100" class="w-8 h-8 rounded-full" alt="User">
+                    <span class="text-sm font-bold text-slate-700">演示账户</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 学生端视图 -->
+        <div x-show="role === 'student'" x-cloak class="space-y-8">
+            <!-- 统计卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="target" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-1 rounded-lg">+12%</span>
+                    </div>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">AI 匹配度</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">92%</p>
+                </div>
+                <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="award" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">获得技能点</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">24</p>
+                </div>
+                <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="clock" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">实习倒计时</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">15 <span class="text-sm font-medium text-slate-400">天</span></p>
+                </div>
+            </div>
+
+            <!-- 岗位推荐 -->
+            <section>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-extrabold text-slate-900">AI 智能匹配岗位</h2>
+                    <button class="text-blue-600 text-sm font-bold">刷新匹配</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100">
+                                    <i data-lucide="building-2" class="w-8 h-8 text-slate-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">云计算开发工程师</h3>
+                                    <p class="text-slate-500 text-sm">华为技术有限公司 · 深圳</p>
+                                </div>
+                            </div>
+                            <div class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-xs font-black">98% 匹配</div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg">Go / Python</span>
+                            <span class="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg">Docker & K8s</span>
+                            <span class="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg">分布式架构</span>
+                        </div>
+                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold group-hover:bg-blue-600 transition-colors">立即沟通</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100">
+                                    <i data-lucide="cpu" class="w-8 h-8 text-slate-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">嵌入式软件工程师</h3>
+                                    <p class="text-slate-500 text-sm">中兴通讯 · 南京</p>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-black">92% 匹配</div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg">C / C++</span>
+                            <span class="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg">RTOS</span>
+                            <span class="px-3 py-1 bg-slate-50 text-slate-600 text-[10px] font-bold rounded-lg">驱动开发</span>
+                        </div>
+                        <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold group-hover:bg-blue-600 transition-colors">立即沟通</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 企业端视图 -->
+        <div x-show="role === 'enterprise'" x-cloak class="space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <h2 class="text-xl font-extrabold text-slate-900 mb-6">人才培养趋势</h2>
+                    <canvas id="enterpriseChart" height="200"></canvas>
+                </div>
+                <div class="bg-slate-900 p-8 rounded-[2.5rem] text-white flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-xl font-extrabold mb-2">AI 招聘助手</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed">系统已自动筛选出 5 名符合“数据库工程师”岗位的高匹配度实习生。</p>
+                    </div>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <img src="https://picsum.photos/seed/s1/100/100" class="w-10 h-10 rounded-full" alt="">
+                            <div class="flex-1">
+                                <p class="font-bold text-sm">陈小明</p>
+                                <p class="text-[10px] text-slate-500">匹配度 98% · 计算机科学</p>
+                            </div>
+                            <button class="p-2 bg-blue-600 rounded-lg"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <img src="https://picsum.photos/seed/s2/100/100" class="w-10 h-10 rounded-full" alt="">
+                            <div class="flex-1">
+                                <p class="font-bold text-sm">王芳</p>
+                                <p class="text-[10px] text-slate-500">匹配度 95% · 软件工程</p>
+                            </div>
+                            <button class="p-2 bg-blue-600 rounded-lg"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 院校端视图 -->
+        <div x-show="role === 'school'" x-cloak class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">整体就业率</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">85.4%</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">对口就业率</p>
+                    <p class="text-3xl font-black text-blue-600 mt-1">72.1%</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">合作企业数</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">128</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">实习中人数</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">1,240</p>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h2 class="text-xl font-extrabold text-slate-900 mb-6">各专业实习分布</h2>
+                <canvas id="schoolChart" height="100"></canvas>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // 初始化 Lucide 图标
+        lucide.createIcons();
+
+        // 企业端图表
+        const ctxEnt = document.getElementById('enterpriseChart')?.getContext('2d');
+        if (ctxEnt) {
+            new Chart(ctxEnt, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+                    datasets: [{
+                        label: '实习生增长',
+                        data: [12, 19, 15, 25, 32, 45],
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+
+        // 院校端图表
+        const ctxSch = document.getElementById('schoolChart')?.getContext('2d');
+        if (ctxSch) {
+            new Chart(ctxSch, {
+                type: 'bar',
+                data: {
+                    labels: ['计算机', '电子信息', '通信工程', '自动化', '人工智能'],
+                    datasets: [{
+                        label: '实习人数',
+                        data: [450, 320, 280, 150, 90],
+                        backgroundColor: '#2563eb',
+                        borderRadius: 10
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
